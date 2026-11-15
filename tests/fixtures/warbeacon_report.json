@@ -1,0 +1,262 @@
+{
+ "success": true,
+ "data": {
+  "uuid": "98b76a47-5f2d-4217-ad83-bb4181014279",
+  "teams": [
+   {
+    "alliance_99003581": 7,
+    "alliance_99013537": 2
+   },
+   {
+    "alliance_1354830081": 1,
+    "alliance_99009163": 1
+   }
+  ],
+  "teamsMetadata": [
+   {
+    "teamId": 0,
+    "totalLosses": 0,
+    "totalLossValue": 0,
+    "participantCount": 9,
+    "topFactions": [
+     {
+      "factionId": 99003581,
+      "participantCount": 7
+     },
+     {
+      "factionId": 99013537,
+      "participantCount": 2
+     }
+    ],
+    "topShipTypes": [
+     {
+      "shipTypeId": 3756,
+      "usageCount": 2
+     },
+     {
+      "shipTypeId": 17709,
+      "usageCount": 2
+     },
+     {
+      "shipTypeId": 24702,
+      "usageCount": 1
+     },
+     {
+      "shipTypeId": 16229,
+      "usageCount": 1
+     }
+    ]
+   },
+   {
+    "teamId": 1,
+    "totalLosses": 2,
+    "totalLossValue": 206860002.11,
+    "participantCount": 2,
+    "topFactions": [
+     {
+      "factionId": 99009163,
+      "participantCount": 1
+     },
+     {
+      "factionId": 1354830081,
+      "participantCount": 1
+     }
+    ],
+    "topShipTypes": [
+     {
+      "shipTypeId": 11969,
+      "usageCount": 1
+     },
+     {
+      "shipTypeId": 57319,
+      "usageCount": 1
+     }
+    ]
+   }
+  ],
+  "locations": [
+   {
+    "id": 30002489,
+    "name": "Atioth",
+    "startTime": "2026-04-21T12:35:00.000Z",
+    "endTime": "2026-04-21T13:35:00.000Z",
+    "totalLosses": 2,
+    "totalLossValue": 206860002.11
+   }
+  ],
+  "killmails": [
+   {
+    "killmail_id": 134905165,
+    "killmail_time": "2026-04-21T13:30:14.000Z",
+    "solar_system_id": 30002489,
+    "total_value": 173147835.21,
+    "victim": {
+     "character_id": 2121692588,
+     "corporation_id": 98817310,
+     "alliance_id": 99009163,
+     "ship_type_id": 11969
+    },
+    "attackers": [
+     {
+      "character_id": 2116692747,
+      "corporation_id": 98655836,
+      "alliance_id": 99003581,
+      "ship_type_id": 3756,
+      "damage_done": 5769,
+      "final_blow": true
+     },
+     {
+      "character_id": 2117030062,
+      "corporation_id": 98655836,
+      "alliance_id": 99003581,
+      "ship_type_id": 3756,
+      "damage_done": 5603,
+      "final_blow": false
+     },
+     {
+      "character_id": 2115775316,
+      "corporation_id": 98655836,
+      "alliance_id": 99003581,
+      "ship_type_id": 24702,
+      "damage_done": 4642,
+      "final_blow": false
+     },
+     {
+      "character_id": 2118512745,
+      "corporation_id": 98655836,
+      "alliance_id": 99003581,
+      "ship_type_id": 17709,
+      "damage_done": 2836,
+      "final_blow": false
+     },
+     {
+      "character_id": 2116533072,
+      "corporation_id": 98626494,
+      "alliance_id": 99003581,
+      "ship_type_id": 16229,
+      "damage_done": 337,
+      "final_blow": false
+     }
+    ]
+   },
+   {
+    "killmail_id": 134904778,
+    "killmail_time": "2026-04-21T13:06:03.000Z",
+    "solar_system_id": 30002489,
+    "total_value": 33712166.9,
+    "victim": {
+     "character_id": 2017782328,
+     "corporation_id": 724997872,
+     "alliance_id": 1354830081,
+     "ship_type_id": 57319
+    },
+    "attackers": [
+     {
+      "character_id": 91683940,
+      "corporation_id": 98812464,
+      "alliance_id": 99013537,
+      "ship_type_id": 17709,
+      "damage_done": 11012,
+      "final_blow": true
+     },
+     {
+      "character_id": 2122169333,
+      "corporation_id": 98648795,
+      "alliance_id": 99003581,
+      "ship_type_id": null,
+      "damage_done": 9245,
+      "final_blow": false
+     },
+     {
+      "character_id": 2119843552,
+      "corporation_id": 98812464,
+      "alliance_id": 99013537,
+      "ship_type_id": null,
+      "damage_done": 8406,
+      "final_blow": false
+     },
+     {
+      "character_id": 2116063619,
+      "corporation_id": 98648795,
+      "alliance_id": 99003581,
+      "ship_type_id": null,
+      "damage_done": 0,
+      "final_blow": false
+     }
+    ]
+   }
+  ],
+  "participants": [],
+  "factions": [],
+  "totalLossValue": 206860002.11,
+  "totalLosses": 2,
+  "updatedAt": "2026-04-21T17:14:35.120Z",
+  "createdAt": "2026-04-21T17:14:35.120Z",
+  "participantCount": 11,
+  "__v": 0,
+  "names": {
+   "entities": {
+    "91683940": "Lunar Imitea",
+    "98626494": "STARCHASER Inc",
+    "98648795": "NullSsay",
+    "98655836": "Spark Fleet",
+    "98812464": "Northern Dominion",
+    "98817310": "Dusk dreadnought.",
+    "99003581": "Fraternity.",
+    "99009163": "Dracarys.",
+    "99013537": "Insidious.",
+    "724997872": "EVE-RO",
+    "1354830081": "Goonswarm Federation",
+    "2017782328": "Ilidan Skycrawler",
+    "2115775316": "Hita O",
+    "2116063619": "Houdini Uisen",
+    "2116533072": "Kurvoraq",
+    "2116692747": "SAS141 Tsutola",
+    "2117030062": "wsdfws",
+    "2118512745": "ShenLiy",
+    "2119843552": "Survas Ylken Hekki",
+    "2121692588": "Noramaa Udan",
+    "2122169333": "jenniard"
+   },
+   "ship_types": {
+    "3756": {
+     "name": "Gnosis",
+     "group_id": 419
+    },
+    "11969": {
+     "name": "Arazu",
+     "group_id": 833
+    },
+    "16229": {
+     "name": "Brutix",
+     "group_id": 419
+    },
+    "17709": {
+     "name": "Omen Navy Issue",
+     "group_id": 26
+    },
+    "24702": {
+     "name": "Hurricane",
+     "group_id": 419
+    },
+    "57319": {
+     "name": "Mobile Cynosural Beacon",
+     "group_id": 4093
+    }
+   },
+   "tickers": {
+    "98626494": "SC-UN",
+    "98648795": "NSSAY",
+    "98655836": "XHLY",
+    "98812464": ".WOW.",
+    "98817310": "DUSK0",
+    "99003581": "FRT",
+    "99009163": "D.C",
+    "99013537": "EVIL.",
+    "724997872": "EVERO",
+    "1354830081": "CONDI"
+   }
+  },
+  "killmailsCursor": "2026-04-21T13:32:22.905Z"
+ }
+}

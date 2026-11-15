@@ -1,0 +1,1111 @@
+{
+ "external_id": "gD9PU6zK8i",
+ "stream_cursor": "1794727963988",
+ "period_start": "2026-11-15T04:00:00Z",
+ "period_end": "2026-11-15T05:28:31Z",
+ "location": {
+  "solar_system_id": 30004807,
+  "solar_system_name": "UALX-3",
+  "region_id": 10000061,
+  "region_name": "Tenerifis",
+  "security_status": -0.186762
+ },
+ "locations": [
+  {
+   "solar_system_id": 30004807,
+   "solar_system_name": "UALX-3",
+   "region_id": 10000061,
+   "region_name": "Tenerifis",
+   "security_status": -0.186762
+  }
+ ],
+ "ranges": [
+  {
+   "solar_system_id": 30004807,
+   "period_start": "2026-11-15T04:00:00Z",
+   "period_end": "2026-11-15T05:28:31Z"
+  }
+ ],
+ "entities": {
+  "types": {
+   "24702": {
+    "id": 24702,
+    "name": "Hurricane",
+    "group_id": 419,
+    "group_name": "Combat Battlecruiser",
+    "meta_group_id": 1
+   },
+   "17732": {
+    "id": 17732,
+    "name": "Tempest Fleet Issue",
+    "group_id": 27,
+    "group_name": "Battleship",
+    "meta_group_id": 4
+   },
+   "0": {
+    "id": 0,
+    "name": "#System",
+    "group_name": "#System"
+   },
+   "633": {
+    "id": 633,
+    "name": "Celestis",
+    "group_id": 26,
+    "group_name": "Cruiser",
+    "meta_group_id": 1
+   },
+   "22464": {
+    "id": 22464,
+    "name": "Flycatcher",
+    "group_id": 541,
+    "group_name": "Interdictor",
+    "meta_group_id": 2
+   },
+   "73793": {
+    "id": 73793,
+    "name": "Phoenix Navy Issue",
+    "group_id": 485,
+    "group_name": "Dreadnought",
+    "meta_group_id": 4
+   },
+   "34828": {
+    "id": 34828,
+    "name": "Jackdaw",
+    "group_id": 1305,
+    "group_name": "Tactical Destroyer",
+    "meta_group_id": 14
+   },
+   "85086": {
+    "id": 85086,
+    "name": "Cenotaph",
+    "group_id": 419,
+    "group_name": "Combat Battlecruiser",
+    "meta_group_id": 4
+   },
+   "11971": {
+    "id": 11971,
+    "name": "Lachesis",
+    "group_id": 906,
+    "group_name": "Combat Recon Ship",
+    "meta_group_id": 2
+   },
+   "11989": {
+    "id": 11989,
+    "name": "Oneiros",
+    "group_id": 832,
+    "group_name": "Logistics",
+    "meta_group_id": 2
+   },
+   "19726": {
+    "id": 19726,
+    "name": "Phoenix",
+    "group_id": 485,
+    "group_name": "Dreadnought",
+    "meta_group_id": 1
+   },
+   "11196": {
+    "id": 11196,
+    "name": "Claw",
+    "group_id": 831,
+    "group_name": "Interceptor",
+    "meta_group_id": 2
+   },
+   "37483": {
+    "id": 37483,
+    "name": "Magus",
+    "group_id": 1534,
+    "group_name": "Command Destroyer",
+    "meta_group_id": 2
+   },
+   "17619": {
+    "id": 17619,
+    "name": "Caldari Navy Hookbill",
+    "group_id": 25,
+    "group_name": "Frigate",
+    "meta_group_id": 4
+   },
+   "11184": {
+    "id": 11184,
+    "name": "Crusader",
+    "group_id": 831,
+    "group_name": "Interceptor",
+    "meta_group_id": 2
+   },
+   "34317": {
+    "id": 34317,
+    "name": "Confessor",
+    "group_id": 1305,
+    "group_name": "Tactical Destroyer",
+    "meta_group_id": 14
+   },
+   "17634": {
+    "id": 17634,
+    "name": "Caracal Navy Issue",
+    "group_id": 26,
+    "group_name": "Cruiser",
+    "meta_group_id": 4
+   },
+   "20125": {
+    "id": 20125,
+    "name": "Curse",
+    "group_id": 906,
+    "group_name": "Combat Recon Ship",
+    "meta_group_id": 2
+   },
+   "23915": {
+    "id": 23915,
+    "name": "Chimera",
+    "group_id": 547,
+    "group_name": "Carrier"
+   },
+   "632": {
+    "id": 632,
+    "name": "Blackbird",
+    "group_id": 26,
+    "group_name": "Cruiser",
+    "meta_group_id": 1
+   },
+   "11381": {
+    "id": 11381,
+    "name": "Harpy",
+    "group_id": 324,
+    "group_name": "Assault Frigate",
+    "meta_group_id": 2
+   },
+   "11192": {
+    "id": 11192,
+    "name": "Buzzard",
+    "group_id": 830,
+    "group_name": "Covert Ops",
+    "meta_group_id": 2
+   },
+   "11961": {
+    "id": 11961,
+    "name": "Huginn",
+    "group_id": 906,
+    "group_name": "Combat Recon Ship",
+    "meta_group_id": 2
+   },
+   "29986": {
+    "id": 29986,
+    "name": "Legion",
+    "group_id": 963,
+    "group_name": "Strategic Cruiser",
+    "meta_group_id": 14
+   },
+   "670": {
+    "id": 670,
+    "name": "Capsule",
+    "group_id": 29,
+    "group_name": "Capsule",
+    "meta_group_id": 1
+   },
+   "29344": {
+    "id": 29344,
+    "name": "Exequror Navy Issue",
+    "group_id": 26,
+    "group_name": "Cruiser",
+    "meta_group_id": 4
+   },
+   "88001": {
+    "id": 88001,
+    "name": "Babaroga",
+    "group_id": 900,
+    "group_name": "Marauder",
+    "meta_group_id": 4
+   },
+   "4306": {
+    "id": 4306,
+    "name": "Naga",
+    "group_id": 1201,
+    "group_name": "Attack Battlecruiser"
+   },
+   "584": {
+    "id": 584,
+    "name": "Griffin",
+    "group_id": 25,
+    "group_name": "Frigate",
+    "meta_group_id": 1
+   },
+   "22448": {
+    "id": 22448,
+    "name": "Absolution",
+    "group_id": 540,
+    "group_name": "Command Ship",
+    "meta_group_id": 2
+   },
+   "638": {
+    "id": 638,
+    "name": "Raven",
+    "group_id": 27,
+    "group_name": "Battleship",
+    "meta_group_id": 1
+   },
+   "24688": {
+    "id": 24688,
+    "name": "Rokh",
+    "group_id": 27,
+    "group_name": "Battleship"
+   },
+   "28710": {
+    "id": 28710,
+    "name": "Golem",
+    "group_id": 900,
+    "group_name": "Marauder",
+    "meta_group_id": 2
+   },
+   "642": {
+    "id": 642,
+    "name": "Apocalypse",
+    "group_id": 27,
+    "group_name": "Battleship",
+    "meta_group_id": 1
+   },
+   "22456": {
+    "id": 22456,
+    "name": "Sabre",
+    "group_id": 541,
+    "group_name": "Interdictor",
+    "meta_group_id": 2
+   },
+   "22466": {
+    "id": 22466,
+    "name": "Astarte",
+    "group_id": 540,
+    "group_name": "Command Ship",
+    "meta_group_id": 2
+   },
+   "32872": {
+    "id": 32872,
+    "name": "Algos",
+    "group_id": 420,
+    "group_name": "Destroyer",
+    "meta_group_id": 1
+   },
+   "34562": {
+    "id": 34562,
+    "name": "Svipul",
+    "group_id": 1305,
+    "group_name": "Tactical Destroyer",
+    "meta_group_id": 14
+   },
+   "11186": {
+    "id": 11186,
+    "name": "Malediction",
+    "group_id": 831,
+    "group_name": "Interceptor",
+    "meta_group_id": 2
+   },
+   "11200": {
+    "id": 11200,
+    "name": "Taranis",
+    "group_id": 831,
+    "group_name": "Interceptor",
+    "meta_group_id": 2
+   },
+   "627": {
+    "id": 627,
+    "name": "Thorax",
+    "group_id": 26,
+    "group_name": "Cruiser",
+    "meta_group_id": 1
+   },
+   "16238": {
+    "id": 16238,
+    "name": "Cormorant",
+    "group_id": 420,
+    "group_name": "Destroyer",
+    "meta_group_id": 1
+   },
+   "12019": {
+    "id": 12019,
+    "name": "Sacrilege",
+    "group_id": 358,
+    "group_name": "Heavy Assault Cruiser",
+    "meta_group_id": 2
+   },
+   "77283": {
+    "id": 77283,
+    "name": "Bane",
+    "group_id": 4594,
+    "group_name": "Lancer Dreadnought",
+    "meta_group_id": 2
+   },
+   "621": {
+    "id": 621,
+    "name": "Caracal",
+    "group_id": 26,
+    "group_name": "Cruiser",
+    "meta_group_id": 1
+   },
+   "609": {
+    "id": 609,
+    "name": "Maulus",
+    "group_id": 25,
+    "group_name": "Frigate",
+    "meta_group_id": 1
+   },
+   "11393": {
+    "id": 11393,
+    "name": "Retribution",
+    "group_id": 324,
+    "group_name": "Assault Frigate",
+    "meta_group_id": 2
+   },
+   "11174": {
+    "id": 11174,
+    "name": "Keres",
+    "group_id": 893,
+    "group_name": "Electronic Attack Ship",
+    "meta_group_id": 2
+   },
+   "22436": {
+    "id": 22436,
+    "name": "Widow",
+    "group_id": 898,
+    "group_name": "Black Ops",
+    "meta_group_id": 2
+   },
+   "32878": {
+    "id": 32878,
+    "name": "Talwar",
+    "group_id": 420,
+    "group_name": "Destroyer",
+    "meta_group_id": 1
+   },
+   "11371": {
+    "id": 11371,
+    "name": "Wolf",
+    "group_id": 324,
+    "group_name": "Assault Frigate",
+    "meta_group_id": 2
+   },
+   "620": {
+    "id": 620,
+    "name": "Osprey",
+    "group_id": 26,
+    "group_name": "Cruiser",
+    "meta_group_id": 1
+   },
+   "589": {
+    "id": 589,
+    "name": "Executioner",
+    "group_id": 25,
+    "group_name": "Frigate",
+    "meta_group_id": 1
+   },
+   "33476": {
+    "id": 33476,
+    "name": "Mobile Cynosural Inhibitor",
+    "group_id": 1249,
+    "group_name": "Mobile Cyno Inhibitor"
+   },
+   "597": {
+    "id": 597,
+    "name": "Punisher",
+    "group_id": 25,
+    "group_name": "Frigate",
+    "meta_group_id": 1
+   },
+   "11978": {
+    "id": 11978,
+    "name": "Scimitar",
+    "group_id": 832,
+    "group_name": "Logistics",
+    "meta_group_id": 2
+   },
+   "32876": {
+    "id": 32876,
+    "name": "Corax",
+    "group_id": 420,
+    "group_name": "Destroyer",
+    "meta_group_id": 1
+   },
+   "73790": {
+    "id": 73790,
+    "name": "Revelation Navy Issue",
+    "group_id": 485,
+    "group_name": "Dreadnought",
+    "meta_group_id": 4
+   },
+   "95629": {
+    "id": 95629,
+    "name": "Oracle Navy Issue",
+    "group_id": 1201,
+    "group_name": "Attack Battlecruiser",
+    "meta_group_id": 4
+   },
+   "11400": {
+    "id": 11400,
+    "name": "Jaguar",
+    "group_id": 324,
+    "group_name": "Assault Frigate",
+    "meta_group_id": 2
+   }
+  },
+  "characters": {
+   "1553354208": {
+    "id": 1553354208,
+    "name": "Kallumm",
+    "corporation_id": 98243307,
+    "alliance_id": 99003214
+   },
+   "2123823470": {
+    "id": 2123823470,
+    "name": "Fuzznick",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "1578129378": {
+    "id": 1578129378,
+    "name": "Sheath Black",
+    "corporation_id": 98840163,
+    "alliance_id": 99009902
+   },
+   "2124230762": {
+    "id": 2124230762,
+    "name": "Ceeflat",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "2122555622": {
+    "id": 2122555622,
+    "name": "shisu marata",
+    "corporation_id": 98259161,
+    "alliance_id": 99003214
+   },
+   "125103937": {
+    "id": 125103937,
+    "name": "Xunantunich",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "2112289996": {
+    "id": 2112289996,
+    "name": "Leonidas Snow",
+    "corporation_id": 98794502,
+    "alliance_id": 99013766
+   },
+   "2117825129": {
+    "id": 2117825129,
+    "name": "Mecha Omnissiah",
+    "corporation_id": 98812336
+   },
+   "2115380488": {
+    "id": 2115380488,
+    "name": "Character 001",
+    "corporation_id": 98487359,
+    "alliance_id": 99011614
+   },
+   "92531298": {
+    "id": 92531298,
+    "name": "Fisher Zylon",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "2123910783": {
+    "id": 2123910783,
+    "name": "Half Asleep",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "94522387": {
+    "id": 94522387,
+    "name": "Ehrendil Katelo",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "2113610081": {
+    "id": 2113610081,
+    "name": "Alik Organa",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "90244215": {
+    "id": 90244215,
+    "name": "Aleihya442",
+    "corporation_id": 98830441,
+    "alliance_id": 99003214
+   },
+   "1787195774": {
+    "id": 1787195774,
+    "name": "Zarvia Caldera",
+    "corporation_id": 98759906
+   },
+   "90175198": {
+    "id": 90175198,
+    "name": "Ulysses442",
+    "corporation_id": 98830441,
+    "alliance_id": 99003214
+   },
+   "2122254476": {
+    "id": 2122254476,
+    "name": "Georgia Bo",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "96549725": {
+    "id": 96549725,
+    "name": "Gragath Ganon",
+    "corporation_id": 98695839,
+    "alliance_id": 99003214
+   },
+   "2114063749": {
+    "id": 2114063749,
+    "name": "Halley Reade",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "584437633": {
+    "id": 584437633,
+    "name": "naked wookie",
+    "corporation_id": 98840564
+   },
+   "96969021": {
+    "id": 96969021,
+    "name": "Evan Kozak",
+    "corporation_id": 98367024,
+    "alliance_id": 99008701
+   },
+   "2119087410": {
+    "id": 2119087410,
+    "name": "Shazzza",
+    "corporation_id": 98381906
+   },
+   "96609445": {
+    "id": 96609445,
+    "name": "Ceesharp",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "2112471389": {
+    "id": 2112471389,
+    "name": "Maranda Loven",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "92764235": {
+    "id": 92764235,
+    "name": "Krestatos",
+    "corporation_id": 98796553
+   },
+   "95146798": {
+    "id": 95146798,
+    "name": "saqib126 reza",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "96708791": {
+    "id": 96708791,
+    "name": "Jason Aiderona",
+    "corporation_id": 98778021
+   },
+   "94761868": {
+    "id": 94761868,
+    "name": "Theta Yatolila",
+    "corporation_id": 98224835,
+    "alliance_id": 99003214
+   },
+   "96942981": {
+    "id": 96942981,
+    "name": "Thanatos Bloodrazor",
+    "corporation_id": 98830441,
+    "alliance_id": 99003214
+   },
+   "2113717045": {
+    "id": 2113717045,
+    "name": "Raylar Sonstorm",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "92854715": {
+    "id": 92854715,
+    "name": "st8t shooter",
+    "corporation_id": 98582741,
+    "alliance_id": 99003214
+   },
+   "714853087": {
+    "id": 714853087,
+    "name": "Chaaz Soulblender",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "2124307524": {
+    "id": 2124307524,
+    "name": "Joker0Jarko",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "95042250": {
+    "id": 95042250,
+    "name": "Kerah Pakeha",
+    "corporation_id": 98830441,
+    "alliance_id": 99003214
+   },
+   "2124444196": {
+    "id": 2124444196,
+    "name": "Trazynn",
+    "corporation_id": 98830441,
+    "alliance_id": 99003214
+   },
+   "1645195116": {
+    "id": 1645195116,
+    "name": "Tyrannt Dynasty",
+    "corporation_id": 98830441,
+    "alliance_id": 99003214
+   },
+   "1300461314": {
+    "id": 1300461314,
+    "name": "Nuju",
+    "corporation_id": 98582741,
+    "alliance_id": 99003214
+   },
+   "2018942594": {
+    "id": 2018942594,
+    "name": "matrixskp",
+    "corporation_id": 98830441,
+    "alliance_id": 99003214
+   },
+   "2124626855": {
+    "id": 2124626855,
+    "name": "Ceetwizzle",
+    "corporation_id": 98685869,
+    "alliance_id": 99003214
+   },
+   "2121149713": {
+    "id": 2121149713,
+    "name": "Arystolio",
+    "corporation_id": 98677174,
+    "alliance_id": 99003214
+   },
+   "97188256": {
+    "id": 97188256,
+    "name": "Draco Decius",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "1796467308": {
+    "id": 1796467308,
+    "name": "Liet Traep",
+    "corporation_id": 98522659,
+    "alliance_id": 99003214
+   },
+   "2122923000": {
+    "id": 2122923000,
+    "name": "Bigus Dingus DOI",
+    "corporation_id": 98840163,
+    "alliance_id": 99009902
+   },
+   "1484019593": {
+    "id": 1484019593,
+    "name": "NetheranE",
+    "corporation_id": 98063797
+   },
+   "2124798573": {
+    "id": 2124798573,
+    "name": "tjbldez",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "93786512": {
+    "id": 93786512,
+    "name": "Argo Sotken",
+    "corporation_id": 98582741,
+    "alliance_id": 99003214
+   },
+   "2124725382": {
+    "id": 2124725382,
+    "name": "Snip Snap Snoopy",
+    "corporation_id": 98830441,
+    "alliance_id": 99003214
+   },
+   "92952998": {
+    "id": 92952998,
+    "name": "Tricycle Jones",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "1555325852": {
+    "id": 1555325852,
+    "name": "Kabaal S'sylistha",
+    "corporation_id": 98665672,
+    "alliance_id": 99003214
+   },
+   "2119027366": {
+    "id": 2119027366,
+    "name": "Schadeck",
+    "corporation_id": 98842101,
+    "alliance_id": 1900696668
+   },
+   "94657666": {
+    "id": 94657666,
+    "name": "Daniel Salamanca",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "2122022044": {
+    "id": 2122022044,
+    "name": "Karsen Okanata",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "94088424": {
+    "id": 94088424,
+    "name": "Ceedull",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "2114472607": {
+    "id": 2114472607,
+    "name": "Dan Pelao",
+    "corporation_id": 98169165,
+    "alliance_id": 99003214
+   },
+   "90424613": {
+    "id": 90424613,
+    "name": "Johen Croes",
+    "corporation_id": 98444440,
+    "alliance_id": 99015024
+   }
+  },
+  "corporations": {
+   "98677174": {
+    "id": 98677174,
+    "name": "Omni Defense Intelligence Network",
+    "ticker": "1.EYE",
+    "alliance_id": 99003214
+   },
+   "98665672": {
+    "id": 98665672,
+    "name": "Rise Of Exiles",
+    "ticker": "ROEXX",
+    "alliance_id": 99003214
+   },
+   "98243307": {
+    "id": 98243307,
+    "name": "Virtus Crusade",
+    "ticker": "VIC.",
+    "alliance_id": 99003214
+   },
+   "98840163": {
+    "id": 98840163,
+    "name": "Broken Singularity",
+    "ticker": "BKSIG",
+    "alliance_id": 99009902
+   },
+   "98169165": {
+    "id": 98169165,
+    "name": "Brave Newbies Inc.",
+    "ticker": "SB00N",
+    "alliance_id": 99003214
+   },
+   "98259161": {
+    "id": 98259161,
+    "name": "Lone Star Warriors",
+    "ticker": "LSWS",
+    "alliance_id": 99003214
+   },
+   "98522659": {
+    "id": 98522659,
+    "name": "Incredible.",
+    "ticker": "SB00B",
+    "alliance_id": 99003214
+   },
+   "98842101": {
+    "id": 98842101,
+    "name": "Twelve Identical Suspicious Mustaches",
+    "ticker": "TIS-M",
+    "alliance_id": 1900696668
+   },
+   "98812336": {
+    "id": 98812336,
+    "name": "Templarii Machinae Omniscientis",
+    "ticker": ".GGWP"
+   },
+   "98778021": {
+    "id": 98778021,
+    "name": "Aurora.",
+    "ticker": ".L-F."
+   },
+   "98685869": {
+    "id": 98685869,
+    "name": "Monitor Inc.",
+    "ticker": "BARVO",
+    "alliance_id": 99003214
+   },
+   "98695839": {
+    "id": 98695839,
+    "name": "South Sun Industries",
+    "ticker": "SOUSN",
+    "alliance_id": 99003214
+   },
+   "98796553": {
+    "id": 98796553,
+    "name": "Amongst The Void",
+    "ticker": ".A-V."
+   },
+   "98840564": {
+    "id": 98840564,
+    "name": "Helix Industries inc.",
+    "ticker": "HII.."
+   },
+   "98759906": {
+    "id": 98759906,
+    "name": "Honor Point",
+    "ticker": "HNRPT"
+   },
+   "98794502": {
+    "id": 98794502,
+    "name": "The Cuyskers",
+    "ticker": "CUYKS",
+    "alliance_id": 99013766
+   },
+   "98381906": {
+    "id": 98381906,
+    "name": "Doomriders.",
+    "ticker": "DR-15"
+   },
+   "98063797": {
+    "id": 98063797,
+    "name": "Error-404",
+    "ticker": "ER404"
+   },
+   "98444440": {
+    "id": 98444440,
+    "name": "Fly Sideways",
+    "ticker": "FSIDE",
+    "alliance_id": 99015024
+   },
+   "98367024": {
+    "id": 98367024,
+    "name": "New Jovian Exploration Department",
+    "ticker": "NJED",
+    "alliance_id": 99008701
+   },
+   "98487359": {
+    "id": 98487359,
+    "name": "Ronin ONE",
+    "ticker": "R-ONE",
+    "alliance_id": 99011614
+   },
+   "98224835": {
+    "id": 98224835,
+    "name": "Star Nation",
+    "ticker": "S-NAT",
+    "alliance_id": 99003214
+   },
+   "98830441": {
+    "id": 98830441,
+    "name": "Blackwall Fortress",
+    "ticker": "BKWAL",
+    "alliance_id": 99003214
+   },
+   "98582741": {
+    "id": 98582741,
+    "name": "Blazing Capsules",
+    "ticker": "-BLZ-",
+    "alliance_id": 99003214
+   }
+  },
+  "alliances": {
+   "1900696668": {
+    "id": 1900696668,
+    "name": "The Initiative.",
+    "ticker": "INIT."
+   },
+   "99013766": {
+    "id": 99013766,
+    "name": "Death Legion of Capybaras",
+    "ticker": "DLCP"
+   },
+   "99008701": {
+    "id": 99008701,
+    "name": "New Jovian Collective",
+    "ticker": "JOVCO"
+   },
+   "99011614": {
+    "id": 99011614,
+    "name": "Ronin Reloaded",
+    "ticker": "RONIN"
+   },
+   "99009902": {
+    "id": 99009902,
+    "name": "Flying Dangerous",
+    "ticker": "FIGL"
+   },
+   "99015024": {
+    "id": 99015024,
+    "name": "Low Class",
+    "ticker": "LOCO"
+   },
+   "99003214": {
+    "id": 99003214,
+    "name": "Brave Collective",
+    "ticker": "BRAVE"
+   }
+  }
+ },
+ "killmails": [
+  {
+   "id": 139931181,
+   "solar_system_id": 30004807,
+   "character_id": 1796467308,
+   "corporation_id": 98522659,
+   "alliance_id": 99003214,
+   "damage_taken": 39251,
+   "ship_type_id": 85086,
+   "created_at": "2026-11-15T04:15:49Z",
+   "attackers": [
+    {
+     "character_id": 2119027366,
+     "corporation_id": 98842101,
+     "alliance_id": 1900696668,
+     "damage_done": 24396,
+     "final_blow": false,
+     "ship_type_id": 88001,
+     "weapon_type_id": 31874
+    },
+    {
+     "character_id": 1787195774,
+     "corporation_id": 98759906,
+     "alliance_id": null,
+     "damage_done": 6247,
+     "final_blow": false,
+     "ship_type_id": 22436,
+     "weapon_type_id": 27453
+    },
+    {
+     "character_id": 2112289996,
+     "corporation_id": 98794502,
+     "alliance_id": 99013766,
+     "damage_done": 5520,
+     "final_blow": true,
+     "ship_type_id": 22448,
+     "weapon_type_id": 3025
+    }
+   ],
+   "isk_value": 583842448
+  },
+  {
+   "id": 139931208,
+   "solar_system_id": 30004807,
+   "character_id": 94761868,
+   "corporation_id": 98224835,
+   "alliance_id": 99003214,
+   "damage_taken": 7519,
+   "ship_type_id": 32878,
+   "created_at": "2026-11-15T04:17:56Z",
+   "attackers": [
+    {
+     "character_id": 2119087410,
+     "corporation_id": 98381906,
+     "alliance_id": null,
+     "damage_done": 4568,
+     "final_blow": true,
+     "ship_type_id": 29986,
+     "weapon_type_id": 3025
+    },
+    {
+     "character_id": 96969021,
+     "corporation_id": 98367024,
+     "alliance_id": 99008701,
+     "damage_done": 2752,
+     "final_blow": false,
+     "ship_type_id": 22466,
+     "weapon_type_id": 2488
+    },
+    {
+     "character_id": 2119027366,
+     "corporation_id": 98842101,
+     "alliance_id": 1900696668,
+     "damage_done": 199,
+     "final_blow": false,
+     "ship_type_id": 88001,
+     "weapon_type_id": 31874
+    }
+   ],
+   "isk_value": 6076193
+  },
+  {
+   "id": 139931211,
+   "solar_system_id": 30004807,
+   "character_id": 94657666,
+   "corporation_id": 98169165,
+   "alliance_id": 99003214,
+   "damage_taken": 13745,
+   "ship_type_id": 22456,
+   "created_at": "2026-11-15T04:18:00Z",
+   "attackers": [
+    {
+     "character_id": 2119087410,
+     "corporation_id": 98381906,
+     "alliance_id": null,
+     "damage_done": 12620,
+     "final_blow": true,
+     "ship_type_id": 29986,
+     "weapon_type_id": 3025
+    },
+    {
+     "character_id": 2119027366,
+     "corporation_id": 98842101,
+     "alliance_id": 1900696668,
+     "damage_done": 1125,
+     "final_blow": false,
+     "ship_type_id": 88001,
+     "weapon_type_id": 31874
+    },
+    {
+     "character_id": 2122923000,
+     "corporation_id": 98840163,
+     "alliance_id": 99009902,
+     "damage_done": 0,
+     "final_blow": false,
+     "ship_type_id": 37483,
+     "weapon_type_id": 4027
+    }
+   ],
+   "isk_value": 61767714
+  },
+  {
+   "id": 139931213,
+   "solar_system_id": 30004807,
+   "character_id": 95042250,
+   "corporation_id": 98830441,
+   "alliance_id": 99003214,
+   "damage_taken": 41992,
+   "ship_type_id": 638,
+   "created_at": "2026-11-15T04:18:21Z",
+   "attackers": [
+    {
+     "character_id": 2119027366,
+     "corporation_id": 98842101,
+     "alliance_id": 1900696668,
+     "damage_done": 10691,
+     "final_blow": false,
+     "ship_type_id": 88001,
+     "weapon_type_id": 88001
+    },
+    {
+     "character_id": 1787195774,
+     "corporation_id": 98759906,
+     "alliance_id": null,
+     "damage_done": 8078,
+     "final_blow": false,
+     "ship_type_id": 22436,
+     "weapon_type_id": 27453
+    },
+    {
+     "character_id": 2112289996,
+     "corporation_id": 98794502,
+     "alliance_id": 99013766,
+     "damage_done": 7881,
+     "final_blow": true,
+     "ship_type_id": 22448,
+     "weapon_type_id": 3025
+    }
+   ],
+   "isk_value": 216220406
+  }
+ ],
+ "side_overrides": []
+}
