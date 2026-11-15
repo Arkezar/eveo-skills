@@ -5,6 +5,7 @@ skills/*/scripts/ directory, because each skill is installed on its own.
 """
 from __future__ import annotations
 
+import difflib
 import gzip
 import html
 import json
@@ -80,9 +81,9 @@ def http(method: str, url: str, body=None, accept: str = "application/json", ret
         headers["X-Compatibility-Date"] = ESI_COMPAT_DATE
     for attempt in range(retries + 1):
         _throttle(url)
-        req = urllib.request.Request(url, data=data, headers=headers, method=method)  # noqa: S310 - https-only, checked above
+        req = urllib.request.Request(url, data=data, headers=headers, method=method)  # noqa: S310 - HTTPS checked above
         try:
-            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:  # noqa: S310
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:  # noqa: S310 - HTTPS checked above
                 return _decode(resp.read(), resp.headers)
         except urllib.error.HTTPError as err:
             if err.code in (420, 429, 500, 502, 503, 504) and attempt < retries:
@@ -93,7 +94,7 @@ def http(method: str, url: str, body=None, accept: str = "application/json", ret
                     continue
             try:
                 detail = _decode(err.read(), err.headers).decode("utf-8", "replace")[:300]
-            except Exception:
+            except Exception:  # noqa: BLE001 - decoding an error body must not hide the HTTP status
                 detail = ""
             raise HttpError(err.code, url, detail) from None
         except (urllib.error.URLError, TimeoutError, ConnectionError) as err:
@@ -127,9 +128,10 @@ def esi_post(path: str, body) -> Any:
     return post_json(ESI + path, body)
 
 
-def download(url: str, dest: Path, refresh: bool = False) -> Path:
-    """Save a binary file (logo, render) unless it is already cached."""
-    if dest.exists() and dest.stat().st_size > 0 and not refresh:
+def download(url: str, dest: Path, refresh: bool = False, max_age: float | None = None) -> Path:
+    """Save a binary file (logo, render, portrait) unless a cached copy exists and is younger than max_age."""
+    cached = dest.exists() and dest.stat().st_size > 0 and not refresh
+    if cached and (max_age is None or time.time() - dest.stat().st_mtime < max_age):
         return dest
     raw = http("GET", url, accept="*/*")
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -181,7 +183,7 @@ def now_iso() -> str:
 
 
 def parse_iso(value: str) -> datetime:
-    return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    return datetime.fromisoformat(value)
 
 
 def stamp(doc: dict, sources: list[str]) -> dict:
@@ -284,7 +286,7 @@ def lookup_ids(name: str) -> dict[str, list[dict]]:
     cache = load_json(path, {})
     cache[key] = {"t": now_iso(), "hits": hits}
     save_json(path, cache)
-    remember_names({r["id"]: (r["name"], cat[:-1] if cat.endswith("s") else cat)
+    remember_names({r["id"]: (r["name"], cat.removesuffix("s"))
                     for cat, rows in hits.items() for r in rows})
     return hits
 
@@ -297,14 +299,16 @@ def resolve_entity(query: str, kind: str | None = None) -> list[dict]:
     """Corporation/alliance from an exact name, numeric ID or zKillboard/EveWho URL -> [{kind, id, name}]."""
     query = query.strip()
     url_match = _URL_ID.search(query)
-    if url_match:
-        found_kind, entity_id = url_match.group(1), int(url_match.group(2))
-        return [{"kind": found_kind, "id": entity_id, "name": resolve_names([entity_id]).get(entity_id)}]
-    if query.isdigit():
-        entity_id = int(query)
+    if url_match and kind and url_match.group(1) != kind:
+        raise EveError(f"URL is for a {url_match.group(1)}, not a {kind}.")
+    if url_match or query.isdigit():
+        entity_id = int(url_match.group(2) if url_match else query)
         category = name_category(entity_id)
         if category not in ENTITY_KINDS:
             raise EveError(f"ID {entity_id} is a {category or 'unknown entity'}, not a corporation or alliance.")
+        expected = kind or (url_match.group(1) if url_match else None)
+        if expected and category != expected:
+            raise EveError(f"ID {entity_id} is a {category}, not a {expected}.")
         return [{"kind": category, "id": entity_id, "name": resolve_names([entity_id])[entity_id]}]
     hits = lookup_ids(query)
     matches = [{"kind": k, "id": r["id"], "name": r["name"]}
@@ -316,6 +320,57 @@ def resolve_entity(query: str, kind: str | None = None) -> list[dict]:
             "(tickers need an authenticated search): pass the full name, the numeric ID, or a zKillboard URL."
         )
     return matches
+
+
+SHIP_CATEGORY = 6
+SHIP_INDEX_TTL = 30 * 24 * 3600  # ship list changes only with game patches
+
+
+def ship_index(refresh: bool = False) -> dict[str, int]:
+    """name -> type ID for every type in published ship groups; built once from ESI, cached 30 days."""
+    path = cache_root() / "ships" / "_index.json"
+    cached = load_json(path)
+    if cached and not refresh and is_fresh(cached, SHIP_INDEX_TTL):
+        return cached["ships"]
+    print("[eve] building ship name index (one-time, ~50 ESI requests)…", file=sys.stderr)
+    type_ids: list[int] = []
+    for group_id in esi_get(f"/universe/categories/{SHIP_CATEGORY}")["groups"]:
+        group = esi_get(f"/universe/groups/{group_id}")
+        if group.get("published"):
+            type_ids += group.get("types", [])
+    names = resolve_names(type_ids)
+    ships = {name: type_id for type_id, name in sorted(names.items())}
+    save_json(path, stamp({"ships": ships}, [f"{ESI}/universe/categories/{SHIP_CATEGORY}"]))
+    return ships
+
+
+def fuzzy_matches(query: str, index: dict[str, int], n: int = 5) -> tuple[list[str], bool]:
+    """-> (candidates, confident). Confident: exactly one name contains the query, or a near-identical spelling."""
+    q = query.casefold()
+    by_fold = {name.casefold(): name for name in index}
+    contains = sorted((name for fold, name in by_fold.items() if q in fold), key=len)
+    close = [by_fold[f] for f in difflib.get_close_matches(q, list(by_fold), n=n, cutoff=0.6)]
+    candidates = list(dict.fromkeys(contains + close))[:n]
+    confident = len(contains) == 1 or (not contains and bool(close) and
+                                       difflib.SequenceMatcher(None, q, close[0].casefold()).ratio() >= 0.85)
+    return candidates, confident
+
+
+def resolve_type(query: str, refresh: bool = False) -> tuple[int, str | None]:
+    """Item/ship type from an exact name, type ID or loose ship name -> (type_id, note about loose matches)."""
+    query = query.strip()
+    if query.isdigit():
+        return int(query), None
+    hits = lookup_ids(query).get("inventory_types") or []
+    if hits:
+        return hits[0]["id"], None
+    index = ship_index(refresh)
+    candidates, confident = fuzzy_matches(query, index)
+    if not candidates:
+        raise EveError(f"No item or ship named '{query}'. Pass the exact in-game name or a type ID.")
+    if confident:
+        return index[candidates[0]], f"'{query}' matched ship '{candidates[0]}'"
+    raise EveError(f"'{query}' is ambiguous. Did you mean: {', '.join(candidates)}? Re-run with the exact name.")
 
 
 # ---------------------------------------------------------------- formatting
@@ -331,8 +386,8 @@ def fmt_isk(value) -> str:
 def strip_html(text: str) -> str:
     """EVE descriptions use <font>, <a>, <br> and <loc> markup; keep text and link targets."""
     text = text or ""
-    text = re.sub(r"<br\s*/?>", "\n", text, flags=re.I)
-    text = re.sub(r'<a\s+href="(https?://[^"]+)"[^>]*>(.*?)</a>', r"\2 (\1)", text, flags=re.I | re.S)
+    text = re.sub(r"<br\s*/?>", "\n", text, flags=re.IGNORECASE)
+    text = re.sub(r'<a\s+href="(https?://[^"]+)"[^>]*>(.*?)</a>', r"\2 (\1)", text, flags=re.IGNORECASE | re.DOTALL)
     text = re.sub(r"<[^>]+>", "", text)
     text = html.unescape(text).replace("\r", "")
     return re.sub(r"\n{3,}", "\n\n", text).strip()

@@ -38,10 +38,10 @@ class ShipInfo(unittest.TestCase):
 
     def test_fuzzy_matching(self):
         index = {"Tempest": 1, "Tempest Fleet Issue": 2, "Vexor Navy Issue": 3, "Omen Navy Issue": 4}
-        candidates, confident = ship.fuzzy_matches("tempest fleet", index)
+        candidates, confident = ship.ec.fuzzy_matches("tempest fleet", index)
         self.assertEqual((candidates[0], confident), ("Tempest Fleet Issue", True))
-        self.assertEqual(ship.fuzzy_matches("Vexr Navy Isue", index)[0][0], "Vexor Navy Issue")
-        candidates, confident = ship.fuzzy_matches("navy", index)
+        self.assertEqual(ship.ec.fuzzy_matches("Vexr Navy Isue", index)[0][0], "Vexor Navy Issue")
+        candidates, confident = ship.ec.fuzzy_matches("navy", index)
         self.assertFalse(confident)
         self.assertEqual(len(candidates), 2)
 
