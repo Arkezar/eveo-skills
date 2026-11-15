@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import eve_common as ec  # noqa: E402
+import eve_common as ec
 
 TTL = 24 * 3600
 LOGO_SIZES = {"corporation": (64, 128, 256), "alliance": (64, 128)}

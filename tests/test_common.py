@@ -3,6 +3,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 from unittest import mock
 
 from helpers import ROOT, load_script
@@ -75,9 +76,55 @@ class Cache(TempCache):
         post.assert_called_once()
 
     def test_resolve_entity_from_url(self):
-        with mock.patch.object(ec, "resolve_names", return_value={98798418: "HLT"}):
+        with (mock.patch.object(ec, "resolve_names", return_value={98798418: "HLT"}),
+              mock.patch.object(ec, "name_category", return_value="corporation")):
             hit = ec.resolve_entity("https://zkillboard.com/corporation/98798418/")
         self.assertEqual(hit, [{"kind": "corporation", "id": 98798418, "name": "HLT"}])
+
+    def test_resolve_entity_rejects_wrong_kind_or_unknown_id(self):
+        for query, kind, actual in (("7", "alliance", "corporation"),
+                                    ("https://zkillboard.com/corporation/7/", "alliance", "corporation"),
+                                    ("https://zkillboard.com/alliance/7/", None, "corporation"),
+                                    ("https://zkillboard.com/alliance/7/", None, None)):
+            with (self.subTest(query=query, kind=kind, actual=actual),
+                  mock.patch.object(ec, "name_category", return_value=actual),
+                  self.assertRaises(ec.EveError)):
+                ec.resolve_entity(query, kind)
+
+    def test_download_respects_age_and_refresh(self):
+        dest = Path(self._tmp.name) / "portrait.jpg"
+        with mock.patch.object(ec, "http", return_value=b"image") as http:
+            ec.download("https://example.test/p", dest, max_age=60)
+            ec.download("https://example.test/p", dest, max_age=60)
+            self.assertEqual(http.call_count, 1)
+            os.utime(dest, (1, 1))
+            ec.download("https://example.test/p", dest)
+            self.assertEqual(http.call_count, 1, "no max_age keeps the original cache policy")
+            ec.download("https://example.test/p", dest, max_age=60)
+            self.assertEqual(http.call_count, 2)
+            ec.download("https://example.test/p", dest, refresh=True)
+            self.assertEqual(http.call_count, 3)
+        self.assertEqual(dest.read_bytes(), b"image")
+
+    def test_failed_refresh_keeps_cached_image(self):
+        dest = Path(self._tmp.name) / "portrait.jpg"
+        dest.write_bytes(b"old")
+        with (mock.patch.object(ec, "http", side_effect=ec.EveError("offline")),
+              self.assertRaises(ec.EveError)):
+            ec.download("https://example.test/p", dest, refresh=True)
+        self.assertEqual(dest.read_bytes(), b"old")
+
+    def test_shared_type_resolution(self):
+        self.assertEqual(ec.resolve_type("123"), (123, None))
+        with mock.patch.object(ec, "lookup_ids", return_value={"inventory_types": [{"id": 1, "name": "Rifter"}]}):
+            self.assertEqual(ec.resolve_type("Rifter"), (1, None))
+        with (mock.patch.object(ec, "lookup_ids", return_value={}),
+              mock.patch.object(ec, "ship_index", return_value={"Rifter": 1, "Raven": 2})):
+            self.assertEqual(ec.resolve_type("rifte"), (1, "'rifte' matched ship 'Rifter'"))
+            with self.assertRaises(ec.EveError):
+                ec.resolve_type("r")
+            with self.assertRaises(ec.EveError):
+                ec.resolve_type("xyz")
 
     def test_unknown_name_raises(self):
         with mock.patch.object(ec, "esi_post", return_value={}), self.assertRaises(ec.EveError):
@@ -87,7 +134,7 @@ class Cache(TempCache):
 class SharedModuleSync(unittest.TestCase):
     def test_every_skill_has_the_canonical_copy(self):
         result = subprocess.run([sys.executable, str(ROOT / "tools" / "sync_common.py"), "--check"],
-                                capture_output=True, text=True)
+                                capture_output=True, text=True, check=False)
         self.assertEqual(result.returncode, 0, result.stdout + " run: python3 tools/sync_common.py")
 
 

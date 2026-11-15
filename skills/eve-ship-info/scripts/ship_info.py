@@ -6,17 +6,15 @@ ESI is the source of truth; EVE Ref adds skill bonuses (traits). Cached as info.
 from __future__ import annotations
 
 import argparse
-import difflib
 import re
 import sys
 from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import eve_common as ec  # noqa: E402
+import eve_common as ec
 
 TTL = 30 * 24 * 3600  # static data; changes only with game patches
-SHIP_CATEGORY = 6
 IMAGE_SIZES = (32, 64, 128, 256, 512, 1024)
 EVEREF = "https://ref-data.everef.net"
 
@@ -48,55 +46,6 @@ META_GROUPS: dict[Any, str] = {1: "Tech I", 2: "Tech II", 3: "Storyline", 4: "Fa
                14: "Tech III"}
 BONUS_UNITS: dict[Any, str] = {105: "%", 104: "x", 1: " m", 139: "+"}
 HIDE_WHEN_ZERO = ("points", "m3", "Mbit/s")  # sensor types a hull lacks, empty drone bays
-
-
-# ---------------------------------------------------------------- lookup
-
-def ship_index(refresh: bool = False) -> dict[str, int]:
-    """name -> type ID for every type in published ship groups; built once from ESI, cached for TTL."""
-    path = ec.cache_root() / "ships" / "_index.json"
-    cached = ec.load_json(path)
-    if cached and not refresh and ec.is_fresh(cached, TTL):
-        return cached["ships"]
-    print("[eve] building ship name index (one-time, ~50 ESI requests)…", file=sys.stderr)
-    type_ids: list[int] = []
-    for group_id in ec.esi_get(f"/universe/categories/{SHIP_CATEGORY}")["groups"]:
-        group = ec.esi_get(f"/universe/groups/{group_id}")
-        if group.get("published"):
-            type_ids += group.get("types", [])
-    names = ec.resolve_names(type_ids)
-    ships = {name: type_id for type_id, name in sorted(names.items())}
-    ec.save_json(path, ec.stamp({"ships": ships}, [f"{ec.ESI}/universe/categories/{SHIP_CATEGORY}"]))
-    return ships
-
-
-def fuzzy_matches(query: str, index: dict[str, int], n: int = 5) -> tuple[list[str], bool]:
-    """-> (candidates, confident). Confident: exactly one name contains the query, or a near-identical spelling."""
-    q = query.casefold()
-    by_fold = {name.casefold(): name for name in index}
-    contains = sorted((name for fold, name in by_fold.items() if q in fold), key=len)
-    close = [by_fold[f] for f in difflib.get_close_matches(q, list(by_fold), n=n, cutoff=0.6)]
-    candidates = list(dict.fromkeys(contains + close))[:n]
-    confident = len(contains) == 1 or (not contains and bool(close) and
-                                       difflib.SequenceMatcher(None, q, close[0].casefold()).ratio() >= 0.85)
-    return candidates, confident
-
-
-def resolve_type(query: str, refresh: bool) -> tuple[int, str | None]:
-    """-> (type_id, note); note says when the name was matched loosely."""
-    query = query.strip()
-    if query.isdigit():
-        return int(query), None
-    hits = ec.lookup_ids(query).get("inventory_types") or []
-    if hits:
-        return hits[0]["id"], None
-    index = ship_index(refresh)
-    candidates, confident = fuzzy_matches(query, index)
-    if not candidates:
-        raise ec.EveError(f"No item or ship named '{query}'. Pass the exact in-game name or a type ID.")
-    if confident:
-        return index[candidates[0]], f"'{query}' matched ship '{candidates[0]}'"
-    raise ec.EveError(f"'{query}' is ambiguous. Did you mean: {', '.join(candidates)}? Re-run with the exact name.")
 
 
 # ---------------------------------------------------------------- fetch
@@ -178,7 +127,7 @@ def fetch_type(type_id: int) -> tuple[dict, list[str]]:
         "name": t["name"],
         "group": {"id": group["group_id"], "name": group["name"]},
         "category": {"id": category["category_id"], "name": category["name"]},
-        "is_ship": category["category_id"] == SHIP_CATEGORY,
+        "is_ship": category["category_id"] == ec.SHIP_CATEGORY,
         "published": t.get("published"),
         "faction": ec.ref(ref.get("faction_id"), names),
         "tech_level": ref.get("tech_level"),
@@ -236,8 +185,8 @@ def render_markdown(doc: dict) -> str:
         out.append("- cached files: " + ", ".join(files.values()))
     model = doc.get("model")
     if model:
-        out += ["", f"3D model (Space Object Factory): DNA `{model['sof_dna']}` · hull `{model['sof_hull']}` · "
-                    f"faction `{model['sof_faction']}` · race `{model['sof_race']}` · graphic ID {model['graphic_id']}",
+        out += ["", (f"3D model (Space Object Factory): DNA `{model['sof_dna']}` · hull `{model['sof_hull']}` · "
+                     f"faction `{model['sof_faction']}` · race `{model['sof_race']}` · graphic ID {model['graphic_id']}"),
                 "No official web 3D viewer exists; community viewers accept the SOF DNA string."]
     out += ["", "## Links", ""] + [f"- {k}: {v}" for k, v in doc["links"].items()]
     out += ["", f"_Fetched {doc['_cache']['fetched_at']} from ESI"
@@ -259,7 +208,7 @@ def download_images(doc: dict, folder: Path, refresh: bool) -> None:
 
 
 def show(query: str, refresh: bool) -> str:
-    type_id, note = resolve_type(query, refresh)
+    type_id, note = ec.resolve_type(query, refresh)
     folder = ec.entity_dir("ships", type_id, None)
     doc = ec.load_json(folder / "info.json")
     if refresh or not ec.is_fresh(doc, TTL):

@@ -8,6 +8,7 @@ Agent skills for EVE Online, compatible with the [`skills` CLI](https://github.c
 | [`eve-killboard`](skills/eve-killboard/SKILL.md) | Kill/loss stats, activity, top lists, recent killmails | zKillboard API, ESI |
 | [`eve-battle-report`](skills/eve-battle-report/SKILL.md) | Battle report from a link: teams, ships, ISK, efficiency | zKillboard, br.evetools.org, killmail.app, warbeacon.net |
 | [`eve-ship-info`](skills/eve-ship-info/SKILL.md) | Ship by name: icon, render, 3D model (SOF) data, bonuses, stats | ESI, image server, EVE Ref |
+| [`eve-poster-prompt`](skills/eve-poster-prompt/SKILL.md) | Image prompt from an event brief, with ordered portraits, ship images and logos | User facts and images, ESI, image server |
 
 ## Install
 
@@ -18,22 +19,53 @@ npx skills add arkezar/eveo-skills --skill eve-battle-report -a claude-code
 
 Requirements: `python3` 3.11+ (standard library only) and HTTPS access to the APIs above. The skills do not need API keys or an EVE login.
 
+## Poster prompts
+
+Install the poster skill from a local checkout:
+
+```bash
+npx skills add . --skill eve-poster-prompt -a claude-code
+```
+
+Give the agent the event facts, the joke target and any images or exact wording. The skill writes one image prompt with English visual instructions. Visible copy uses the conversation language unless the user requests another language. It preserves supplied names, numbers, image roles and attachment order. Supplied images take precedence over downloaded references.
+
+The collector also runs directly:
+
+```bash
+python3 skills/eve-poster-prompt/scripts/collect_refs.py \
+  --title "Fleet poster" --pilot "Squizz Caphinator" --ship "Rifter"
+```
+
+The collector downloads references, not a poster. It creates a new job folder with numbered images, `references.json` and `references.md`. The agent writes `brief.md` and `prompt.txt` there. `--out DIR` requires a new or empty folder and never clears existing files.
+
+Check the completed prompt:
+
+```bash
+python3 skills/eve-poster-prompt/scripts/check_prompt.py /path/to/job/prompt.txt \
+  --require "Swiezaq" --require-visible "Bilety w jedną stronę"
+```
+
+The checker validates sections, length and literal strings. The agent must also check event accuracy and reference roles. Attach the images to your generator in the order from `references.md`. A local path alone does not supply an image to the generator. No image-generation API or paid service runs through this skill.
+
 ## Cache
 
-Every skill writes what it fetched as readable files and reuses them on the next call:
+Every collector saves readable files and reuses cached sources on the next call:
 
 ```text
 ~/.cache/eve-skills/              # or $EVE_SKILLS_CACHE_DIR, or $XDG_CACHE_HOME/eve-skills
 ├── names.json                    # shared ID → name cache (ESI /universe/names)
 ├── ids.json                      # shared exact name → ID cache (ESI /universe/ids)
+├── types.json                    # poster ship classes and image variants (fresh 30 d)
+├── characters/<id>-<slug>/      # portrait-1024.jpg                       (fresh 7 d)
 ├── corporations/<id>-<slug>/     # info.json, README.md, logo.png          (fresh 24 h)
 ├── alliances/<id>-<slug>/        # info.json, README.md, logo.png          (fresh 24 h)
 ├── killboard/<kind>-<id>-<slug>/ # stats.json, killmails-*.json, report-*.md (fresh 1 h)
 ├── battle-reports/<source>-<id>/ # report.json, README.md                  (final once the fight is 6 h old)
-└── ships/<id>-<slug>/            # info.json, README.md, icon.png, render.jpg (fresh 30 d)
+├── ships/<id>-<slug>/            # info.json, README.md, icon.png, render.jpg (data fresh 30 d)
+└── posters/<title-slug>-<id>/    # references.json/.md, images, brief.md, prompt.txt
 ```
 
-Pass `--refresh` to any script to ignore the cache.
+Pass `--refresh` to a collector to fetch its sources again. Poster renders and logos stay cached until refresh. Each poster run creates a new job folder but reuses source images.
 
 | Variable | Default | Purpose |
 |---|---|---|
@@ -53,7 +85,15 @@ The scripts share one helper module. The canonical copy is `shared/eve_common.py
 
 ```bash
 python3 tools/sync_common.py            # copy shared/eve_common.py into skills/*/scripts/
+python3 tools/sync_common.py --check    # verify bundled copies without writing
 python3 -m unittest discover -s tests   # offline tests (fixtures are trimmed real API responses)
 ```
 
 A test fails when a skill's copy of the helper module differs from the canonical one.
+
+Optional lint and type checks use Ruff and Pyright. These are development tools, not runtime dependencies:
+
+```bash
+uvx ruff check --extend-select S310 shared skills tests tools
+npx -y pyright --project pyrightconfig.json
+```

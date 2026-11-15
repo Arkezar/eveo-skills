@@ -5,6 +5,7 @@
     { "root": "skills/eve-killboard/scripts", "extraPaths": ["skills/eve-killboard/scripts"] },
     { "root": "skills/eve-battle-report/scripts", "extraPaths": ["skills/eve-battle-report/scripts"] },
     { "root": "skills/eve-ship-info/scripts", "extraPaths": ["skills/eve-ship-info/scripts"] },
-    { "root": "tests", "extraPaths": ["shared", "skills/eve-killboard/scripts", "skills/eve-battle-report/scripts", "skills/eve-ship-info/scripts", "skills/eve-corp-alliance/scripts"] }
+    { "root": "skills/eve-poster-prompt/scripts", "extraPaths": ["skills/eve-poster-prompt/scripts"] },
+    { "root": "tests", "extraPaths": ["shared", "skills/eve-killboard/scripts", "skills/eve-battle-report/scripts", "skills/eve-ship-info/scripts", "skills/eve-corp-alliance/scripts", "skills/eve-poster-prompt/scripts"] }
   ]
 }

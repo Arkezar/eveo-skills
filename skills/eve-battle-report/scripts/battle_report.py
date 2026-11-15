@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import eve_common as ec  # noqa: E402
+import eve_common as ec
 
 ZKB = "https://zkillboard.com"
 LIVE_TTL = 600  # a fight that ended < SETTLED ago may still be gaining killmails
@@ -365,8 +365,8 @@ def render_markdown(report: dict) -> str:
     span = (f"{report['start'][:16].replace('T', ' ')} – {report['end'][11:16]} UTC"
             if report["start"] else "no killmails")
     out = [f"# Battle report: {where}", "",
-           f"{span} · {totals['killmails']} killmails · {ec.fmt_isk(totals['isk_destroyed'])} ISK destroyed"
-           f" · {totals['pilots']} pilots  ",
+           (f"{span} · {totals['killmails']} killmails · {ec.fmt_isk(totals['isk_destroyed'])} ISK destroyed"
+            f" · {totals['pilots']} pilots  "),
            f"Source: {report['url']} (data: {report['api_url']})"]
     if report["teams_inferred"]:
         out.append("\n> Teams inferred from who shot whom; this source has no team split. "

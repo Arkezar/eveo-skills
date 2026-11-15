@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import eve_common as ec  # noqa: E402
+import eve_common as ec
 
 ZKB = "https://zkillboard.com"
 TTL = 3600  # zKillboard documents a 1-hour client cache for these endpoints
